@@ -17,3 +17,39 @@ export function Loader1() {
     </div>
   );
 }
+
+export function Loader2() {
+  return (
+    <div className="w-screen h-screen flex items-center justify-center">
+      <div className="flex flex-col items-center">
+        <div class="hourglassBackground ">
+          <div class="hourglassContainer">
+            <div class="hourglassCurves"></div>
+            <div class="hourglassCapTop"></div>
+            <div class="hourglassGlassTop"></div>
+            <div class="hourglassSand"></div>
+            <div class="hourglassSandStream"></div>
+            <div class="hourglassCapBottom"></div>
+            <div class="hourglassGlass"></div>
+          </div>
+        </div>
+        <span className="text-4xl ml-5">processing...</span>
+      </div>
+    </div>
+  );
+}
+export function Loader3() {
+  return (
+    <div className="w-screen h-screen flex items-center justify-center">
+      <div className="loader1 opacity-75"></div>
+    </div>
+  );
+}
+
+export function Loader4() {
+  return (
+    <div className=" w-screen h-screen flex justify-center items-center">
+      <div class="loader3"></div>
+    </div>
+  );
+}

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+
 import {
   Logoutbutton,
   Signinbutton,
@@ -25,6 +26,7 @@ export function Navbar({ name, usern, display }) {
       >
         Payments App
       </button>
+
       <span className="flex sm:hidden">
         <Dropdownbutton1
           name={usern}

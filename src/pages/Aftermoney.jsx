@@ -1,11 +1,14 @@
-import {Navbar} from "../components/Navbar";
+import { Navbar } from "../components/Navbar";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Toast } from "../components/Toast";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { useRef } from "react";
+import Confetti from "@/components/magicui/confetti";
 export default function Aftermoney() {
+  const confettiRef = useRef(null);
   const tocken = localStorage.getItem("token");
   const [balanceafter, setBalance] = useState(0);
   const [name, setName] = useState("Not Authrised");
@@ -83,6 +86,13 @@ export default function Aftermoney() {
           </span>
         </div>
       </div>
+      <Confetti
+        ref={confettiRef}
+        className="absolute left-0 top-0 z-0 h-full w-full"
+        onMouseEnter={() => {
+          confettiRef.current?.fire({});
+        }}
+      />
     </div>
   );
 }

@@ -12,9 +12,7 @@ import Modal from "../components/Modal";
 export default function Dashboard() {
   const location = useLocation();
   const [balance, setBalance] = useState(0);
-  const [filteredData, setFilteredData] = useState([
-    { username: "not authorised" },
-  ]);
+  const [filteredData, setFilteredData] = useState([{ username: " " }]);
   const [name, setName] = useState("User");
   const [userName, setuserName] = useState("User");
   const [error, setError] = useState("hello");

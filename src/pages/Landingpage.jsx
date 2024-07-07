@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
+import TypingAnimation from "../components/magicui/typing-animation.jsx";
+import ShineBorder from "../components/magicui/shine-border.jsx";
+import WordRotate from "../components/magicui/word-rotate.jsx";
+import { useNavigate } from "react-router-dom";
 export default function Landingpage() {
   return (
     <div className="w-full h-screen ">
-      <nav className="fixed z-50 flex items-center justify-between md:justify-around w-full h-14 shadow-md shadow-slate-950 bg-slate-700">
-        <span className="text-[1.2rem] sm:text-2xl p-2">PaymentApp</span>
-        <div className="flex gap-1 sm:gap-5 md:gap-10 h-3/4">
+      <nav className="fixed z-50 flex items-center justify-between w-full h-14 shadow-md shadow-slate-950 bg-slate-700">
+        <span className="text-[1.2rem] sm:text-2xl p-2 ml-4">PaymentApp</span>
+        <div className="flex gap-1 sm:gap-5 md:gap-10 h-3/4 mr-10">
           <Link
             to="/signin"
             target="_blank"
@@ -22,13 +26,20 @@ export default function Landingpage() {
         </div>
       </nav>
       <div className="relative top-20">
-        <Link
-          to="/dashboard"
-          target="_blank"
-          className="relative isolation-auto z-10  before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full  before:-right-full before:hover:right-0 before:rounded-full before:bg-black before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center px-4 py-3 text-sm font-semibold text-white  border border-gray-200 rounded-lg shadow-sm gap-x-2  disabled:opacity-50 disabled:pointer-events-none"
-        >
-          <button>Dashboard</button>
-        </Link>
+        <TypingAnimation text="Welcome to Peer to Peer PaymentApp" />
+        <ShineBorder
+          className="text-center text-3xl font-bold"
+          color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+          children={
+            <Link to="/dashboard" target="_blank">
+              <button>dashboard</button>
+            </Link>
+          }
+        />
+        <WordRotate
+          className="text-4xl font-bold text-black dark:text-white"
+          words={["Peer", "to", "peer"]}
+        />
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
         repellat est nam omnis repellendus quam. Tempora, assumenda nobis
         voluptatibus sed minus, praesentium odio tenetur illum perferendis

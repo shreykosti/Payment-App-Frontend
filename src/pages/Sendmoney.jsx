@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
-import axios from "axios";
+import { Moneybutton } from "../components/Button";
 export default function Sendmoney() {
   const tocken = localStorage.getItem("token");
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function Sendmoney() {
   return (
     <div className="w-screen h-screen flex justify-center items-center box-si box-border bg-slate-700">
       <Navbar usern={you} display={vissible} name={youname} />
-      <div className=" bg-c2 w-max p flex flex-col justify-center items-center p-4 rounded-lg border border-slate-500">
+      <div className=" bg-c2  p flex flex-col justify-center items-center p-4 rounded-lg border border-slate-500">
         <Heading input="Send Money" />
         <div className=" w-full h-20 py-14 flex  items-center gap-10  rounded-md">
           <svg
@@ -79,6 +79,28 @@ export default function Sendmoney() {
             });
           }}
         />
+        {/* <div className="mt-10">
+          <Moneybutton
+            onClick={() => {
+              console.log(amount, usernameSendTo, id);
+              if (amount <= 0) {
+                alert("Please enter a valid amount");
+                setVissible("flex");
+                return;
+              }
+              navigate("/pinpage", {
+                state: {
+                  tosendname: usernameSendTo,
+                  to: id,
+                  amount: amount,
+                  firstname: firstname,
+                  lastname: lastname,
+                  balance: balance,
+                },
+              });
+            }}
+          />
+        </div> */}
       </div>
     </div>
   );

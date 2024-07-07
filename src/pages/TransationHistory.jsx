@@ -41,8 +41,6 @@ export default function TransationHistory() {
       .then((res) => {
         console.log(res.data.transaction);
         setValues(res.data.transaction.reverse());
-        const notify1 = () => toast("Transaction history");
-        notify1();
       })
       .catch(() => {
         const notify2 = () => toast("Not authorized to be on this place");

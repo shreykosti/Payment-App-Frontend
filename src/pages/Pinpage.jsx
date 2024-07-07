@@ -1,5 +1,4 @@
 import PinInput from "react-pin-input";
-import { Button } from "../components/Button";
 import { Logoutbutton } from "../components/Navigationbutton";
 import { Dashboardbutton } from "../components/Navigationbutton";
 import { useState } from "react";
@@ -9,6 +8,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Moneybutton } from "../components/Button";
 export default function Pinpage({}) {
   const [visible, setVisible] = useState(true);
   const [visible2, setVisible2] = useState("hidden");
@@ -35,7 +35,7 @@ export default function Pinpage({}) {
           <h1 className="text-2xl sm:text-3xl mt-[-20px] text-center px-14 ">
             PIN Verification
           </h1>
-          <div className="w-full flex flex-col px-2 mt-6 bg-slate-500">
+          <div className="w-full flex flex-col px-2 mt-6 bg-gray-900">
             <div className="flex justify-between">
               <span>To:</span>
               <span>{tosendname}</span>
@@ -81,7 +81,7 @@ export default function Pinpage({}) {
           </div>
 
           <div className="w-full px-1 mt-8 ">
-            <div className="bg-slate-500 rounded-l-full rounded-r-full  flex items-center justify-start gap-3 text-sm">
+            <div className="bg-slate-900 rounded-l-full rounded-r-full  flex items-center justify-start gap-3 text-sm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -102,9 +102,8 @@ export default function Pinpage({}) {
               </div>
             </div>
           </div>
-          <div className="w-full px-2 mb-[-20px] ">
-            <Button
-              input="Send Money"
+          <div className="mt-6 mb-[-20px] w-full px-2 sm:px-3 flex justify-center items-center">
+            <Moneybutton
               onClick={() => {
                 axios
                   .post(
@@ -121,7 +120,7 @@ export default function Pinpage({}) {
                     }
                   )
                   .then((res) => {
-                    // alert(`${res.data.message} 🎉🎉`);
+                    alert(`${res.data.message} 🎉🎉`);
                     const notify = () => toast(`done🎉🎉`);
                     notify();
                     navigate("/transfer/complete", {
