@@ -27,12 +27,12 @@ export default function Signup() {
   return (
     <div className="w-full bg-slate-700 h-screen flex justify-center items-center box-si box-border">
       <Navbar display={show} />
-      <div className="flex flex-col justify-center items-center p-4 rounded-lg border border-slate-500 bg-slate-700 ">
+      <div className=" w-[95%] smv:w-max flex flex-col justify-center items-center p-4 rounded-lg border border-slate-500 bg-slate-700 mt-20 vmd:mt-0">
         <div className="mt-[-15px]">
           <Heading input="Sign up" />
         </div>
         <Toast />
-        <p className="mt-2 w-full p-2 text-sm text-center text-white">
+        <p className="mt-1 vmd:mt-2 w-full p-2 text-sm text-center text-white">
           {error}
         </p>
         <Inputbox
@@ -149,7 +149,7 @@ export default function Signup() {
               <button
                 onClick={() => {
                   setVissible1(!vissible1);
-                  console.log(vissible1);
+                 // console.log(vissible1);
                 }}
                 className="relative z-10 top-[-43px] right-[-250px]"
               >
@@ -176,22 +176,24 @@ export default function Signup() {
             input="Sign Up"
             onClick={() => {
               axios
-                .post("http://localhost:3000/api/v1/user/signup", {
-                  firstname: firstname,
-                  lastname: lastname,
-                  username: username,
-                  password: password,
-                  pin: pin,
-                })
+                .post(
+                  "http://localhost:3000/api/v1/user/signup",
+                  {
+                    firstname: firstname,
+                    lastname: lastname,
+                    username: username,
+                    password: password,
+                    pin: pin,
+                  },
+                  { withCredentials: true }
+                )
                 .then((res) => {
-                  let jwttocken = res.data.token;
-                  localStorage.setItem("token", jwttocken);
                   navigate("/signin", {
                     state: true,
                   });
                 })
                 .catch((err) => {
-                  console.log(err.request);
+                  //console.log(err.request);
                   const notify = () =>
                     toast(err.request.response || "Not Authorized To Be Here");
                   notify();
@@ -202,7 +204,7 @@ export default function Signup() {
           />
         </div>
 
-        <p className="mt-4">
+        <p className="mt-4 flex items-center justify-center w-full">
           Already have an account?
           <Link to="/signin">
             <button className="text-white">

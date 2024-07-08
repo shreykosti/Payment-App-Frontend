@@ -13,7 +13,6 @@ export default function Pinpage({}) {
   const [visible, setVisible] = useState(true);
   const [visible2, setVisible2] = useState("hidden");
   const [pin, setPin] = useState(0);
-  const tocken = localStorage.getItem("token");
   const location = useLocation();
   const navigate = useNavigate();
   const { amount, to, tosendname, firstname, lastname, balance } =
@@ -114,9 +113,7 @@ export default function Pinpage({}) {
                       pin: pin,
                     },
                     {
-                      headers: {
-                        authorization: `Bearer ${tocken}`,
-                      },
+                      withCredentials: true,
                     }
                   )
                   .then((res) => {

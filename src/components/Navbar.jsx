@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import {
   Logoutbutton,
@@ -27,7 +28,7 @@ export function Navbar({ name, usern, display }) {
         Payments App
       </button>
 
-      <span className="flex sm:hidden">
+      <span className="flex sm:hidden ">
         <Dropdownbutton1
           name={usern}
           button1={<Logoutb />}
@@ -65,7 +66,6 @@ function Logoutb() {
   return (
     <button
       onClick={() => {
-        localStorage.removeItem("token");
         navigate("/");
       }}
       className="border-t py-3 text-left px-3 relative isolation-auto z-10  before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full  before:-right-full before:hover:right-0 before:rounded-full before:bg-black before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center
@@ -97,8 +97,8 @@ function Signupb() {
       onClick={() => {
         navigate("/signup");
       }}
-      className="border-t py-3 text-left px-3 relative isolation-auto z-10  before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full  before:-right-full before:hover:right-0 before:rounded-full before:bg-black before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center 
-      text-[1.1rem] font-semibold text-white border-gray-200 shadow-sm gap-x-2  disabled:opacity-50 disabled:pointer-events-none"
+      className="border-t opacity-100 py-3 text-left px-3 relative isolation-auto z-10  before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full  before:-right-full before:hover:right-0 before:rounded-full before:bg-black before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center 
+      text-[1.1rem] font-semibold text-white border-gray-200 shadow-sm gap-x-2  disabled:opacity-100 disabled:pointer-events-none"
     >
       Sign Up
     </button>
@@ -131,5 +131,34 @@ function Historyb() {
     >
       Transction History
     </button>
+  );
+}
+
+export function LandingpageNavbar() {
+  return (
+    <nav className="z-50 flex items-center justify-between w-full h-12 shadow-md shadow-slate-950 bg-slate-700 fixed">
+      <span className="text-3xl  font-medium text-[#5de2a3] -mt-2 p-2 ml-4">
+        PaymentApp
+      </span>
+      <div className="hidden sm:flex gap-1 sm:gap-5 md:gap-10 h-3/4 mr-2 sm:mr-10">
+        <Link
+          to="/signin"
+          target="_blank"
+          className="relative isolation-auto z-10  before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full  before:-right-full before:hover:right-0 before:rounded-full before:bg-black before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center px-4 py-5 -mt-1 text-sm font-semibold text-white  border border-gray-200 rounded-lg shadow-sm gap-x-2  disabled:opacity-50 disabled:pointer-events-none"
+        >
+          <button>SignIn</button>
+        </Link>
+        <Link
+          to="/signup"
+          target="_blank"
+          className="relative isolation-auto z-10  before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full  before:-right-full before:hover:right-0 before:rounded-full before:bg-black before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center px-4 py-5 -mt-1 text-sm font-semibold text-white  border border-gray-200 rounded-lg shadow-sm gap-x-2  disabled:opacity-50 disabled:pointer-events-none"
+        >
+          <button>SignUp</button>
+        </Link>
+      </div>
+      <div className="flex sm:hidden">
+        <Dropdownbutton1 button1={<Signupb />} button2={<Signinb />} />
+      </div>
+    </nav>
   );
 }

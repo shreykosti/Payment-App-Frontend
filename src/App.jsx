@@ -47,7 +47,7 @@ function App() {
             path="/signin"
             element={
               <Suspense fallback={<Loader3 />}>
-                <Delayed waitBeforeShow={3000} fallback={<Loader3 />}>
+                <Delayed waitBeforeShow={2000} fallback={<Loader3 />}>
                   <Signin />
                 </Delayed>
               </Suspense>
@@ -57,7 +57,7 @@ function App() {
             path="/signup"
             element={
               <Suspense fallback={<Loader3 />}>
-                <Delayed waitBeforeShow={3000} fallback={<Loader3 />}>
+                <Delayed waitBeforeShow={2000} fallback={<Loader3 />}>
                   <Signup />
                 </Delayed>
               </Suspense>
@@ -85,7 +85,7 @@ function App() {
             path="/transfer/complete"
             element={
               <Suspense fallback={<Loader2 />}>
-                <Delayed waitBeforeShow={1000} fallback={<Loader2 />}>
+                <Delayed waitBeforeShow={2000} fallback={<Loader2 />}>
                   <Aftermoney />
                 </Delayed>
               </Suspense>
@@ -105,7 +105,7 @@ function App() {
             path="/pinpage"
             element={
               <Suspense fallback={<Loader2 />}>
-                <Delayed waitBeforeShow={1000} fallback={<Loader2 />}>
+                <Delayed waitBeforeShow={1500} fallback={<Loader2 />}>
                   <Pinpage />
                 </Delayed>
               </Suspense>

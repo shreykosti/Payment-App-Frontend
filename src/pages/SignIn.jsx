@@ -25,7 +25,7 @@ export default function Signin() {
   return (
     <div className="w-full bg-slate-700 h-screen flex justify-center items-center box-si box-border">
       <Navbar display={show} />
-      <div className="flex flex-col justify-center items-center p-4 rounded-lg border border-slate-500 bg-slate-700 ">
+      <div className="w-[90%] smv:w-max flex flex-col justify-center items-center p-4 rounded-lg border border-slate-500 bg-slate-700 ">
         <Heading input="Sign in" />
 
         <Toast />
@@ -98,19 +98,21 @@ export default function Signin() {
             input="Sign In"
             onClick={() => {
               axios
-                .post("http://localhost:3000/api/v1/user/signin", {
-                  username: username,
-                  password: password,
-                })
+                .post(
+                  "http://localhost:3000/api/v1/user/signin",
+                  {
+                    username: username,
+                    password: password,
+                  },
+                  { withCredentials: true }
+                )
                 .then((res) => {
-                  let jwttocken = res.data.token;
-                  localStorage.setItem("token", jwttocken);
                   navigate("/dashboard", {
                     state: true,
                   });
                 })
                 .catch((err) => {
-                  console.log(err.request.response);
+                 // console.log(err.request.response);
                   const notify = () =>
                     toast(err.request.response || "Not Authorized To Be Here");
                   notify();
@@ -121,11 +123,11 @@ export default function Signin() {
           />
         </div>
 
-        <p className="mt-4">
+        <p className="mt-4 flex gap-2">
           Don't have an have an account?
           <Link to="/signup">
             <button className="text-white">
-              <span className="hover:text-black hover:text-xl">Sign Up</span>
+              <span className="hover:text-black">Sign Up</span>
             </button>
           </Link>
         </p>

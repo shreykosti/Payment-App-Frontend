@@ -36,7 +36,7 @@ const ShineBorder = ({
         "--border-radius": `${borderRadius}px`,
       }}
       className={cn(
-        "relative grid min-h-[60px] w-fit min-w-[300px] place-items-center rounded-[--border-radius] bg-slate-950 p-3  dark:bg-slate-950 dark:text-white",
+        "relative grid min-h-[60px] w-fit min-w-[250px] place-items-center rounded-[--border-radius] bg-slate-800 text-white p-3  ",
         className
       )}
     >

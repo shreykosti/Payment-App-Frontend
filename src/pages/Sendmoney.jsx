@@ -4,9 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
-import { Moneybutton } from "../components/Button";
 export default function Sendmoney() {
-  const tocken = localStorage.getItem("token");
   const navigate = useNavigate();
   const location = useLocation();
   const [amount, setAmount] = useState(0);
@@ -61,7 +59,7 @@ export default function Sendmoney() {
           data={`Sending : ${amount}`}
           input="Initiate Transfer"
           onClick={() => {
-            console.log(amount, usernameSendTo, id);
+           // console.log(amount, usernameSendTo, id);
             if (amount <= 0) {
               alert("Please enter a valid amount");
               setVissible("flex");

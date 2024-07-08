@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Dropdownbutton1 } from "../components/Button";
+
 import { Navbar } from "../components/Navbar";
 import { Toast } from "../components/Toast";
 import { toast } from "react-toastify";
@@ -8,7 +8,6 @@ import { Th } from "../components/Thistory";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function TransationHistory() {
-  const tocken = localStorage.getItem("token");
   const [values, setValues] = useState([]);
   const [balance, setBalance] = useState("");
   const [userName, setUserName] = useState("");
@@ -16,12 +15,10 @@ export default function TransationHistory() {
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/v1/account/getBallance", {
-        headers: {
-          authorization: `Bearer ${tocken}`,
-        },
+        withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data);
+       // console.log(res.data);
         setBalance(res.data.Balance);
         setUserName(res.data.username);
         setFname(res.data.firstname);
@@ -34,12 +31,10 @@ export default function TransationHistory() {
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/v1/account/transaction/history", {
-        headers: {
-          authorization: `Bearer ${tocken}`,
-        },
+        withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data.transaction);
+        //console.log(res.data.transaction);
         setValues(res.data.transaction.reverse());
       })
       .catch(() => {
@@ -89,7 +84,7 @@ export default function TransationHistory() {
             return (
               <Th
                 day={value.day}
-                year={value.year}
+                year={value.year00}
                 month={value.month}
                 sendto={value.sendto}
                 amount={value.amount}

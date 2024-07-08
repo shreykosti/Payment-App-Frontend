@@ -12,7 +12,6 @@ export const Profileupdater = ({ outerdiv, innerbutton, name }) => {
   const [changePassword, setChangePassword] = useState("");
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
-  const tocken = localStorage.getItem("token");
   const navigate = useNavigate();
   return (
     <div className={`hidden sm:block ${outerdiv}`}>
@@ -22,9 +21,7 @@ export const Profileupdater = ({ outerdiv, innerbutton, name }) => {
           onClick={() => {
             axios
               .get("http://localhost:3000/api/v1/account/getBallance", {
-                headers: {
-                  authorization: `Bearer ${tocken}`,
-                },
+                withCredentials: true,
               })
               .then((res) => {
                 setFirstname(res.data.firstname);
@@ -128,16 +125,14 @@ export const Profileupdater = ({ outerdiv, innerbutton, name }) => {
                           lastname: changeLastname,
                         },
                         {
-                          headers: {
-                            authorization: `Bearer ${tocken}`,
-                          },
+                          withCredentials: true,
                         }
                       )
                       .then((res) => {
                         window.location.reload();
                       })
                       .catch((err) => {
-                        console.log(err);
+                        //console.log(err);
                       });
                     handleClose();
                   }}

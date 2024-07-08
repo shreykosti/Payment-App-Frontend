@@ -15,8 +15,6 @@ const Modal = ({ border, size }) => {
   const [changeFirstname, setChangeFirstname] = useState("");
   const [changeLastname, setChangeLastname] = useState("");
   const [changePassword, setChangePassword] = useState("");
-
-  const tocken = localStorage.getItem("token");
   return (
     <div>
       <div
@@ -27,9 +25,7 @@ const Modal = ({ border, size }) => {
           onClick={() => {
             axios
               .get("http://localhost:3000/api/v1/account/getBallance", {
-                headers: {
-                  authorization: `Bearer ${tocken}`,
-                },
+                withCredentials: true,
               })
               .then((res) => {
                 setFirstname(res.data.firstname);
@@ -163,16 +159,14 @@ const Modal = ({ border, size }) => {
                           lastname: changeLastname,
                         },
                         {
-                          headers: {
-                            authorization: `Bearer ${tocken}`,
-                          },
+                          withCredentials: true,
                         }
                       )
                       .then((res) => {
                         window.location.reload();
                       })
                       .catch((err) => {
-                        console.log(err);
+                       // console.log(err);
                       });
                     handleClose();
                   }}

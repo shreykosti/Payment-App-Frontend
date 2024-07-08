@@ -1,15 +1,14 @@
 import { Navbar } from "../components/Navbar";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Toast } from "../components/Toast";
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useRef } from "react";
 import Confetti from "@/components/magicui/confetti";
 export default function Aftermoney() {
   const confettiRef = useRef(null);
-  const tocken = localStorage.getItem("token");
   const [balanceafter, setBalance] = useState(0);
   const [name, setName] = useState("Not Authrised");
   const [userlastname, setLastName] = useState("Not Authrised");
@@ -17,9 +16,7 @@ export default function Aftermoney() {
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/v1/account/getBallance", {
-        headers: {
-          authorization: `Bearer ${tocken}`,
-        },
+        withCredentials: true,
       })
       .then((res) => {
         const notify = () => toast("transaction suceesfull");
@@ -38,7 +35,7 @@ export default function Aftermoney() {
       });
   }, []);
   const location = useLocation();
-  console.log(location.state);
+  //console.log(location.state);
   const { amount, tosendname, firstname, lastname, balance } =
     location.state || {
       amountsend: "Not Authrised",

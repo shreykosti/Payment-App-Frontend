@@ -22,13 +22,12 @@ export default function Dashboard() {
     "Not Authorised to be on this page"
   );
   const navigate = useNavigate();
-  let tocken = localStorage.getItem("token");
 
   useEffect(() => {
     let signinsate = location.state || {
       state: false,
     };
-    console.log(signinsate);
+    //console.log(signinsate);
     if (signinsate === true) {
       const notify = () => toast("signin suceesfull");
 
@@ -39,9 +38,7 @@ export default function Dashboard() {
 
     axios
       .get("http://localhost:3000/api/v1/account/getBallance", {
-        headers: {
-          authorization: `Bearer ${tocken}`,
-        },
+        withCredentials: true,
       })
       .then((res) => {
         const balance = res.data.Balance;
@@ -112,9 +109,7 @@ export default function Dashboard() {
                       e.target.value || " "
                     }`,
                     {
-                      headers: {
-                        authorization: `Bearer ${tocken}`,
-                      },
+                      withCredentials: true,
                     }
                   )
                   .then((res) => {
@@ -122,13 +117,9 @@ export default function Dashboard() {
                     setFilteredData(res.data.users);
                   })
                   .catch((err) => {
-                    if (!tocken) {
-                      const notify = () => toast("signin to be on this page");
-                      notify();
-                      setError("you are not authorised to be on this page");
-                    }
-
-                    console.log(tocken);
+                    const notify = () => toast("signin to be on this page");
+                    notify();
+                    setError("you are not authorised to be on this page");
                   });
               }}
               labelname="Users"
@@ -155,21 +146,17 @@ export default function Dashboard() {
               <div>
                 <Payment
                   onClick={() => {
-                    {
-                      tocken === null
-                        ? navigate("/signup")
-                        : navigate("/sendmoney", {
-                            state: {
-                              usernameSendTo: user.username,
-                              firstname: user.firstname,
-                              lastname: user.lastname,
-                              id: user._id,
-                              balance: balance,
-                              you: userName,
-                              youname: name,
-                            },
-                          });
-                    }
+                    navigate("/sendmoney", {
+                      state: {
+                        usernameSendTo: user.username,
+                        firstname: user.firstname,
+                        lastname: user.lastname,
+                        id: user._id,
+                        balance: balance,
+                        you: userName,
+                        youname: name,
+                      },
+                    });
                   }}
                   usernameSendTo={user.username}
                   firstname={user.firstname}
