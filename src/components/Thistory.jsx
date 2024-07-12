@@ -47,7 +47,7 @@ export function Th({
       className="w-full h-[100px] border-b-2 flex flex-col justify-between text-white"
     >
       <div className="flex justify-between">
-        <div className="border-black border-[2px] rounded-2xl h-14 w-14 flex justify-center items-center">
+        <div className="border-black dark:border-white border-[2px] rounded-2xl h-14 w-14 flex justify-center items-center">
           {recived ? icon1 : icon2}
         </div>
         <div className="flex flex-col text-[1rem] sm:text-[1.15rem] md:text-[1.19rem] ">

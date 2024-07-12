@@ -24,17 +24,21 @@ export default function Pinpage({}) {
       lastname: "Not Autherised",
     };
   return (
-    <div className="w-full flex flex-col justify-center items-center  h-screen text-white">
+    <div className="w-full flex flex-col justify-center items-center  h-screen">
       <div>
         <div className={visible2}>
-          <Logoutbutton data="shrey" />
+          <Logoutbutton
+            onClick={() => {
+              navigate("/");
+            }}
+          />
           <Dashboardbutton />
         </div>
-        <div className=" w-[320px] sm:w-max border rounded-lg flex flex-col items-center p-10 px-0">
+        <div className=" w-[320px] sm:w-max border dark:border-2 rounded-lg flex flex-col items-center p-10 px-0">
           <h1 className="text-2xl sm:text-3xl mt-[-20px] text-center px-14 ">
             PIN Verification
           </h1>
-          <div className="w-full flex flex-col px-2 mt-6 bg-gray-900">
+          <div className="w-full flex flex-col px-2 mt-6 bg-gray-900 dark:bg-slate-600">
             <div className="flex justify-between">
               <span>To:</span>
               <span>{tosendname}</span>
@@ -80,7 +84,7 @@ export default function Pinpage({}) {
           </div>
 
           <div className="w-full px-1 mt-8 ">
-            <div className="bg-slate-900 rounded-l-full rounded-r-full  flex items-center justify-start gap-3 text-sm">
+            <div className="bg-slate-900 dark:bg-slate-600 rounded-l-full rounded-r-full  flex items-center justify-start gap-3 text-sm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -118,7 +122,7 @@ export default function Pinpage({}) {
                   )
                   .then((res) => {
                     alert(`${res.data.message} 🎉🎉`);
-                    const notify = () => toast(`done🎉🎉`);
+                    const notify = () => toast.success(`done🎉🎉`);
                     notify();
                     navigate("/transfer/complete", {
                       state: {
@@ -134,8 +138,8 @@ export default function Pinpage({}) {
                     setVisible2("flex justify-between w-full");
                     const mess = "Not Authorised";
                     const error = err.request.response || mess;
-                    alert("transaction failed");
-                    const notify = () => toast(`${error}🧐🧐`);
+                    alert("🧐🧐transaction failed🧐🧐");
+                    const notify = () => toast.error(`${error}🧐🧐`);
                     notify();
                   });
               }}

@@ -12,6 +12,7 @@ import Modal from "../components/Modal";
 export default function Dashboard() {
   const location = useLocation();
   const [balance, setBalance] = useState(0);
+  const [filter, setFilter] = useState("");
   const [filteredData, setFilteredData] = useState([{ username: " " }]);
   const [name, setName] = useState("User");
   const [userName, setuserName] = useState("User");
@@ -22,14 +23,14 @@ export default function Dashboard() {
     "Not Authorised to be on this page"
   );
   const navigate = useNavigate();
-
+  const debouncedSearchTerm = useDebounce(filter, 500);
   useEffect(() => {
     let signinsate = location.state || {
       state: false,
     };
     //console.log(signinsate);
     if (signinsate === true) {
-      const notify = () => toast("signin suceesfull");
+      const notify = () => toast.success("signin suceesfull");
 
       notify();
 
@@ -46,7 +47,7 @@ export default function Dashboard() {
         const lastname = res.data.lastname;
         const username = res.data.username;
         const notify1 = () =>
-          toast("Enter a username in top bar to search users");
+          toast.success("Enter a username in top bar to search users");
         notify1();
         setPopmessage("Enter a username in search bar to search users");
         setBalance(balance);
@@ -55,23 +56,44 @@ export default function Dashboard() {
         setlastname(lastname);
       })
       .catch(() => {
-        const notify = () => toast("not authorised to be on this page");
+        const notify = () => toast.error("not authorised to be on this page");
         notify();
       });
   }, []);
 
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      axios
+        .get(
+          `http://localhost:3000/api/v1/user/bulk?filter=${debouncedSearchTerm}`,
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          //console.log("res.data.users");
+          setError("hello");
+          setFilteredData(res.data.users);
+        })
+        .catch((err) => {
+          const notify = () => toast.error("signin to be on this page");
+          notify();
+          setError("you are not authorised to be on this page");
+        });
+    }
+  }, [debouncedSearchTerm]);
   return (
-    <div className="w-full h-screen bg-slate-700">
+    <div className="w-full h-screen overflow-auto bg-transparent overflow-vissible">
       <Toast />
       <Navbar name={name} usern={userName} />
-      <div className="flex flex-col relative top-20 bg-slate-700 ">
+      <div className="flex flex-col relative top-20 bg-transparent">
         <div className="py-3 flex flex-col sm:flex-row justify-center sm:justify-between items-center">
           <span className="ml-0 sm:ml-10 flex gap-3 items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              fill="black"
-              className="size-8"
+              fill="currentColor"
+              className="size-8 text-black dark:text-white "
             >
               <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
               <path
@@ -87,8 +109,8 @@ export default function Dashboard() {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              fill="black"
-              className="size-8"
+              fill="currentColor"
+              className="size-8 text-black dark:text-white "
             >
               <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
               <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
@@ -96,31 +118,14 @@ export default function Dashboard() {
             {userName}
           </span>
         </div>
-        <div className="bg-slate-700">
+        <div className="bg-transparent">
           <div className="px-10 mt-7">
             <Inputbox
               message={popmessage}
               vissibl={true}
               onChange={(e) => {
                 setVisible("visible");
-                axios
-                  .get(
-                    `http://localhost:3000/api/v1/user/bulk?filter=${
-                      e.target.value || " "
-                    }`,
-                    {
-                      withCredentials: true,
-                    }
-                  )
-                  .then((res) => {
-                    setError("hello");
-                    setFilteredData(res.data.users);
-                  })
-                  .catch((err) => {
-                    const notify = () => toast("signin to be on this page");
-                    notify();
-                    setError("you are not authorised to be on this page");
-                  });
+                setFilter(e.target.value);
               }}
               labelname="Users"
               icon={
@@ -143,7 +148,7 @@ export default function Dashboard() {
           </div>
           <div className={`px-10 mt-5 ${visible}`}>
             {filteredData.map((user) => (
-              <div>
+              <div key={user._id}>
                 <Payment
                   onClick={() => {
                     navigate("/sendmoney", {
@@ -165,10 +170,26 @@ export default function Dashboard() {
                 />
               </div>
             ))}
-            <span className="text-3xl text-center">{error}</span>
+            <div className="flex justify-center items-center text-xl h-20">
+              <p>{popmessage}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => clearTimeout(timerId);
+  }, [value, delay]);
+
+  return debouncedValue;
+};

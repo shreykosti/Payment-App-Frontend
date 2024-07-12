@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       keyframes: {
@@ -22,7 +23,7 @@ module.exports = {
         vlg: { raw: "(min-height: 1024px)" },
         vxl: { raw: "(min-height: 1280px)" },
         v2xl: { raw: "(min-height: 1536px)" },
-        smv : "400px",
+        smv: "400px",
         sm: "640px",
         md: "768px",
         lg: "1024px",

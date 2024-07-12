@@ -25,16 +25,14 @@ export default function Signup() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full bg-slate-700 h-screen flex justify-center items-center box-si box-border">
+    <div className="w-full h-screen overflow-auto flex justify-center items-center box-si box-border">
       <Navbar display={show} />
-      <div className=" w-[95%] smv:w-max flex flex-col justify-center items-center p-4 rounded-lg border border-slate-500 bg-slate-700 mt-20 vmd:mt-0">
+      <div className=" w-[95%] smv:w-max flex flex-col justify-center items-center p-4 rounded-lg border border-slate-500 bg-transparent mt-20 vmd:mt-0 shadow-2xl dark:shadow-md dark:shadow-white ">
         <div className="mt-[-15px]">
           <Heading input="Sign up" />
         </div>
         <Toast />
-        <p className="mt-1 vmd:mt-2 w-full p-2 text-sm text-center text-white">
-          {error}
-        </p>
+        <p className="mt-1 vmd:mt-2 w-full p-2 text-sm text-center">{error}</p>
         <Inputbox
           vissibl={true}
           onChange={(e) => {
@@ -44,8 +42,8 @@ export default function Signup() {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              fill="BLACK"
-              class="size-8"
+              fill="currentColor"
+              className="size-8 text-black dark:text-white "
             >
               <path
                 fillRule="evenodd"
@@ -66,8 +64,8 @@ export default function Signup() {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              fill="BLACK"
-              class="size-8"
+              fill="currentColor"
+              className="size-8 text-black dark:text-white "
             >
               <path
                 fill-rule="evenodd"
@@ -88,8 +86,8 @@ export default function Signup() {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              fill="black"
-              className="size-8"
+              fill="currentColor"
+              className="size-8 text-black dark:text-white "
             >
               <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
               <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
@@ -125,8 +123,8 @@ export default function Signup() {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                fill="black"
-                className="size-8"
+                fill="currentColor"
+                className="size-8 text-black dark:text-white "
               >
                 <path
                   fillRule="evenodd"
@@ -149,7 +147,7 @@ export default function Signup() {
               <button
                 onClick={() => {
                   setVissible1(!vissible1);
-                 // console.log(vissible1);
+                  // console.log(vissible1);
                 }}
                 className="relative z-10 top-[-43px] right-[-250px]"
               >
@@ -158,7 +156,7 @@ export default function Signup() {
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
-                  stroke="currentColor"
+                  stroke="white"
                   className="size-7"
                 >
                   <path
@@ -195,7 +193,7 @@ export default function Signup() {
                 .catch((err) => {
                   //console.log(err.request);
                   const notify = () =>
-                    toast(err.request.response || "Not Authorized To Be Here");
+                    toast.error(err.request.response || "Not Authorized To Be Here");
                   notify();
                   setError(err.request.response || "Not Authorized To Be Here");
                   setShow("flex");
@@ -204,11 +202,13 @@ export default function Signup() {
           />
         </div>
 
-        <p className="mt-4 flex items-center justify-center w-full">
+        <p className="mt-4 flex items-center gap-4 justify-center w-full">
           Already have an account?
           <Link to="/signin">
             <button className="text-white">
-              <span className=" hover:text-black hover:text-xl">Sign In</span>
+              <span className=" hover:text-black dark:hover:text-red-500">
+                Sign In
+              </span>
             </button>
           </Link>
         </p>

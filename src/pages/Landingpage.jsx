@@ -22,48 +22,15 @@ export default function Landingpage() {
     </svg>
   );
   return (
-    <div className="w-full h-screen ">
+    <div className="w-full h-screen">
       <LandingpageNavbar />
-      <div className="w-full h-screen flex flex-col items-center">
+      <div className="w-full h-screen overflow-auto flex flex-col  items-center">
         <div className="w-full h-12  bg-black"></div>
         <div className="flex flex-col items-center justify-center gap-3 mt-10">
-          {/* <span className="text-5xl sm:text-6xl font-serif">Welcome to</span> */}
-          <TypingAnimation
-            className="text-4xl text-[#5de2a3] sm:text-5xl"
-            text="Peer to Peer"
-          />
+          <span className="text-5xl sm:text-4xl font-serif">Peer to Peer</span>
           <span className="text-5xl sm:text-6xl font-serif">Payment app</span>
         </div>
 
-        <div className="mt-20 -mb-5 h-28 w-full flex justify-center items-center gap-5">
-          <span className="text-3xl md:text-4xl lg:text-5xl ml-3 sm:ml-5 md:ml-10 lg:ml-20 text-[#5de2a3] flex items-center  h-28">
-            App Features
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className=" size-8 sm:size-10 md:size-14 mt-3"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
-              />
-            </svg>
-          </span>
-          <WordRotate
-            className="text-3xl md:text-4xl lg:text-6xl font-bold text-black dark:text-white"
-            words={[
-              "Create Account",
-              "Update Profile",
-              "Send Money",
-              "Track Payments",
-              "4 Pin Security",
-            ]}
-          />
-        </div>
         <div className="w-full mt-10">
           <div className="w-full mt-10 flex flex-col md:flex-row items-center justify-around gap-10 md:gap-0">
             <ShineBorder

@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-export function Profileupdater({ outerdiv, innerbutton, name }) {
+const Modal = ({ outerdiv, innerbutton, name }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
@@ -24,7 +24,9 @@ export function Profileupdater({ outerdiv, innerbutton, name }) {
   const [vissible2, setVissible2] = useState("hidden");
   return (
     <div>
-      <div className={`hidden sm:block ${outerdiv}`}>
+      <div
+        className={`hidden sm:block ${outerdiv}`}
+      >
         <button
           className={`hidden sm:flex items-center ${innerbutton}`}
           onClick={() => {
@@ -114,7 +116,7 @@ export function Profileupdater({ outerdiv, innerbutton, name }) {
                     setVissibl2("flex");
                     setVissible2("hidden");
                   }}
-                  className={`fixed mt-2 mr-96 ${vissible2}`}
+                  className={`fixed left-20 mt-4 ${vissible2}`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -314,6 +316,7 @@ export function Profileupdater({ outerdiv, innerbutton, name }) {
                         }
                       )
                       .then((res) => {
+                        console.log(res.data);
                         setVissibl2("flex");
                         setVissibl1("hidden");
                         setVissible2("hidden");
@@ -322,14 +325,15 @@ export function Profileupdater({ outerdiv, innerbutton, name }) {
                         notify();
                       })
                       .catch((err) => {
+                        console.log(err.response.data);
                         const notify = () =>
-                          toast.error(err.response.data || "Not Authorized");
+                          toast(err.response.data || "Not Authorized");
                         notify();
                       });
                   }}
                   className={`border-2 py-2 bg-slate-700 mt-5 mb-5 justify-center dark:bg-slate-950 rounded-lg w-full ${vissibl1}`}
                 >
-                  Click Me to Save Password
+                  Click Me to Save My Password
                 </button>
               </div>
               <div className="flex items-center justify-start gap-5 p-4  md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
@@ -356,7 +360,7 @@ export function Profileupdater({ outerdiv, innerbutton, name }) {
                         .catch((err) => {
                           // console.log(err);
                           const notify = () =>
-                            toast.error("To close without Updating use Cancel");
+                            toast("To close without Updating use Cancel");
                           notify();
                         });
                     }}
@@ -377,4 +381,6 @@ export function Profileupdater({ outerdiv, innerbutton, name }) {
       )}
     </div>
   );
-}
+};
+
+export default Modal;

@@ -20,9 +20,9 @@ export default function Sendmoney() {
     };
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center box-si box-border bg-slate-700">
+    <div className="w-screen h-screen flex justify-center items-center box-si box-border ">
       <Navbar usern={you} display={vissible} name={youname} />
-      <div className=" bg-c2  p flex flex-col justify-center items-center p-4 rounded-lg border border-slate-500">
+      <div className=" bg-c2  p flex flex-col justify-center items-center p-4 rounded-lg border dark:border-2 border-slate-500">
         <Heading input="Send Money" />
         <div className=" w-full h-20 py-14 flex  items-center gap-10  rounded-md">
           <svg
@@ -39,7 +39,7 @@ export default function Sendmoney() {
               d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
             />
           </svg>
-          <p className="text-black text-2xl ml-[-20px]">{usernameSendTo}</p>
+          <p className=" text-2xl ml-[-20px]">{usernameSendTo}</p>
         </div>
         <div className="w-full">
           <input
@@ -49,7 +49,7 @@ export default function Sendmoney() {
             min="0"
             max="100000"
             step="100"
-            className="p-2 rounded-md bg-transparent border border-white text-white focus:outline-none focus:border-blue-50 w-full"
+            className="p-2 rounded-md bg-transparent border dark:border-2 border-white text-white focus:outline-none focus:border-blue-50 w-full"
             onChange={(e) => {
               setAmount(e.target.value);
             }}
@@ -59,9 +59,9 @@ export default function Sendmoney() {
           data={`Sending : ${amount}`}
           input="Initiate Transfer"
           onClick={() => {
-           // console.log(amount, usernameSendTo, id);
+            // console.log(amount, usernameSendTo, id);
             if (amount <= 0) {
-              alert("Please enter a valid amount");
+              alert("🧐🧐Please enter a valid amount🧐🧐");
               setVissible("flex");
               return;
             }

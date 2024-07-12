@@ -18,13 +18,13 @@ export default function TransationHistory() {
         withCredentials: true,
       })
       .then((res) => {
-       // console.log(res.data);
+        // console.log(res.data);
         setBalance(res.data.Balance);
         setUserName(res.data.username);
         setFname(res.data.firstname);
       })
       .catch(() => {
-        const notify = () => toast("not signed in");
+        const notify = () => toast.error("not signed in");
         notify();
       });
   }, []);
@@ -38,12 +38,12 @@ export default function TransationHistory() {
         setValues(res.data.transaction.reverse());
       })
       .catch(() => {
-        const notify2 = () => toast("Not authorized to be on this place");
+        const notify2 = () => toast.error("Not authorized to be on this place");
         notify2();
       });
   }, []);
   return (
-    <div className="w-screen h-screen">
+    <div className="w-full h-screen overflow-auto">
       <Toast />
       <div className="w-full flex flex-col gap-10 relative top-10 items-center">
         <Navbar usern={userName} name={fname} />
@@ -52,8 +52,8 @@ export default function TransationHistory() {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              fill="black"
-              className="size-8"
+              fill="currentColor"
+              className="size-8 text-black dark:text-white "
             >
               <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
               <path
@@ -69,8 +69,8 @@ export default function TransationHistory() {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              fill="black"
-              className="size-8"
+              fill="currentColor"
+              className="size-8 text-black dark:text-white "
             >
               <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
               <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
@@ -79,7 +79,7 @@ export default function TransationHistory() {
             <span>{userName}</span>
           </span>
         </div>
-        <div className=" w-[90%] sm:w-[65%] md:w-[50%] lg:w-[40%] xl:w-[35%] border mt-6 flex flex-col gap-5 p-5 rounded-xl">
+        <div className=" w-[90%] sm:w-[65%] md:w-[50%] lg:w-[40%] xl:w-[35%] border dark:border-2 mt-6 flex flex-col gap-5 text-white p-5 rounded-xl">
           {values.map((value) => {
             return (
               <Th
@@ -97,8 +97,8 @@ export default function TransationHistory() {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="black"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
                     className="size-12"
                   >
                     <path
@@ -113,8 +113,8 @@ export default function TransationHistory() {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="black"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
                     className="size-12"
                   >
                     <path

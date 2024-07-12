@@ -1,4 +1,4 @@
-.card {
+.card1 {
   /* color used to softly clip top and bottom of the .words container */
   --bg-color: #212121;
   background-color: var(--bg-color);
@@ -88,7 +88,7 @@
 }
 .hourglassBackground {
   position: relative;
-  background-color: rgb(139, 228, 244);
+  background-color: #020617;
   height: 130px;
   width: 130px;
   border-radius: 50%;
@@ -217,7 +217,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: rgb(139, 228, 244);
+  background-color: #020617;
   animation: hideCurves 2s ease-in 0s infinite;
 }
 
@@ -607,7 +607,7 @@
   border-top-color: transparent;
   border-bottom-color: transparent;
   border-radius: 50%;
-  animation: spin_51 1s infinite linear;
+  animation: spin_51 2s infinite linear;
 }
 
 @keyframes spin_51 {
