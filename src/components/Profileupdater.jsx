@@ -323,7 +323,7 @@ export function Profileupdater({ outerdiv, innerbutton, name }) {
                       })
                       .catch((err) => {
                         const notify = () =>
-                          toast.error(err.response.data || "Not Authorized");
+                          toast.error("Invalid Input");
                         notify();
                       });
                   }}
